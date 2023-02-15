@@ -199,12 +199,14 @@ WHERE first_name || last_name LIKE '%u%'
 --    예) 업무번호  평균급여
        -----------------
 --        CLERK      2300   
-SELECT AVG(salary)
+SELECT job_id 업무번호, AVG(salary) 평균급여
 FROM employees
-WHERE job_id LIKE 'IT_PROG';
-SELECT AVG(salary)
-FROM employees
-WHERE job_id LIKE 'IT_PROG';
-
-SELECT job_id, (SELECT AVG(salary) FROM employees WHERE job_id LIKE 'IT_PROG')
-FROM employees
+GROUP BY job_id
+HAVING AVG(salary) = (
+    SELECT MIN(AVG(salary))
+    FROM employees
+    GROUP BY job_id    
+    
+);
+--HAVING AVG(salary) = 2780;
+--HAVING job_id = 'PU_CLERK';
