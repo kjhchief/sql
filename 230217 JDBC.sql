@@ -5,6 +5,7 @@ INSERT INTO departments(department_id, department_name)
 VALUES(departments_seq.NEXTVAL, '∞≥πﬂ∆¿');
 
 rollback;
+commit;
 
 select *
 from user_sequences;
@@ -34,19 +35,25 @@ CREATE table accounts(
   owner_name   VARCHAR2(20) NOT NULL,
   passwd       NUMBER(4) NOT NULL,
   rest_money   NUMBER(10) NOT NULL,
-  borrow_money NUMBER(10) NOT NULL
+  borrow_money NUMBER(10),
+  borrow_date DATE DEFAULT NULL
   
 );
+DROP table accounts CASCADE CONSTRAINTS;
 
 SELECT COUNT(*)
 FROM accounts;
 
-INSERT INTO accounts
+INSERT INTO accounts(account_num, owner_name, passwd, rest_money, borrow_money)
 VALUES ('1111-2222-3333', '±Ë¿Á»∆', 1111, 10000, 0);
 
 SELECT *
 FROM accounts;
 
-SELECT account_num, owner_name, passwd, rest_money, borrow_money
+SELECT account_num, owner_name, passwd, rest_money, borrow_money, borrow_date
 FROM accounts
 WHERE account_num LIKE '%111%';
+
+-- ªË¡¶
+DELETE FROM accounts
+WHERE account_num = '1111-2222' ;
