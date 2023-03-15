@@ -147,8 +147,9 @@ FROM cookbook c
         ON c.author_id = m.member_id
 ORDER BY book_id DESC;
 
-
-
+SELECT *
+FROM cookbook 
+ORDER BY book_id;
 
 
 
