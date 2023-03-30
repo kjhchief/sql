@@ -10,6 +10,11 @@ CREATE TABLE member (
     regdate      DATE DEFAULT SYSDATE
 );
 
+--제약조건 조회
+SELECT * 
+FROM    ALL_CONSTRAINTS
+WHERE    TABLE_NAME = 'member';
+
 
 --#2. 제약조건 추가
 ALTER TABLE member
